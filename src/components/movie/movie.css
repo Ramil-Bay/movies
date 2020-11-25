@@ -1,0 +1,48 @@
+@font-face {
+  	font-family: 'Inter';
+	font-style: normal;
+	font-weight: normal;
+	src: url("../../fonts/static/Inter-Regular-slnt=0.ttf") format("truetype"); 
+}
+
+.card__container {
+	max-width: 454px;
+	max-height: 281px;
+	display: flex;
+	flex-direction: row;
+}
+
+.card__img {
+	max-width: 183px;
+	max-height: 281px;
+}
+
+.card__title {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 28px;
+	margin: 12px 0 7px 20px;
+}
+
+.card__paragraph {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 22px;
+	max-width: 228px;
+	max-height: 129px;
+	margin: 7px 20px 0 20px;
+}
+
+.card__date {
+	font-family: Inter;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 22px;
+	color: #827E7E;
+	margin: 7px 7px 9px 20px;
+}
