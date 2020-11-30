@@ -10,5 +10,7 @@
 .card {
 	list-style-type: none;
 	margin: 20px;
+	margin-left: 25px;
 	box-shadow: 4px 4px 10px 0;
+	width: 451px;
 }

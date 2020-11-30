@@ -13,8 +13,8 @@
 }
 
 .card__img {
-	max-width: 183px;
-	max-height: 281px;
+	width: 183px;
+	height: 281px;
 }
 
 .card__title {

@@ -1,0 +1,9 @@
+.main__spin {
+	position: absolute;
+	top: 47%;
+	left: 47%;
+}
+
+.main .main__pagination {
+	text-align: center;
+}

@@ -21,7 +21,7 @@ export default class Movie extends Component {
 		return(
 				<div className="card__container">
 					
-						<img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className="card__img" />
+						<img src={`https://image.tmdb.org/t/p/w500/${poster_path}`} className="card__img" alt="Sorry, we didn't find this picture." />
 
 					<div>
 						<h3 className="card__title">{title}</h3>

@@ -6,7 +6,7 @@ import Movie from '../movie';
 import './movie-list.css';
 
 const MovieList = ({movies}) => {
-	console.log(movies);
+
 	const cards = movies.map((elem) => {
 		return(
 			<li className="card" key={elem.id}>
