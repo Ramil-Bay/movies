@@ -1,0 +1,10 @@
+[1130/094517.062:ERROR:settings.cc(320)] Settings magic is not 1129342067
+[1130/095517.094:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[1130/111236.130:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1130/111236.130:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1130/111236.130:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1130/111236.130:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1130/111236.130:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1130/111236.130:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1130/111236.130:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)
+[1130/111236.130:ERROR:process_reader_win.cc(151)] SuspendThread: Отказано в доступе. (0x5)

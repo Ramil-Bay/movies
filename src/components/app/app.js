@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Spin, Alert } from 'antd';
 
+import { Provider } from '../swapi-services-context'
 import Main from '../main'
 import MovieList from '../movie-list';
 import SwapiServices from '../swapi-services/swapi-services';
@@ -18,23 +19,27 @@ export default class App extends Component {
 		searchValue: '',
 		current: 1, 
 		pages: null,
+		rateMovies: [],
+		show: null,
+		genre: null,
 	}
 
 	componentDidMount() {
-		this.getResult(1);
+		this.getGenre();
+		this.guestSession();
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		const {searchValue, current} = this.state;
+		if (!searchValue && prevState.searchValue !== searchValue) {
+			return this.guestSession();
+		} 
 		if (current !== prevState.current) {
 			this.getResult(current, searchValue);
-			console.log(this.state.searchValue);
-			console.log('update');
 		} else if (searchValue !== prevState.searchValue) {
 			this.getResult(1, searchValue);
 		}
 	}
-
 
 	swapiServices = new SwapiServices();
 
@@ -43,6 +48,38 @@ export default class App extends Component {
 	      	current: page,
 	    });
 	};
+
+	showEdit = (value) => {
+		this.setState(() => {
+			return {
+				show: value,
+			}
+		})
+	}
+
+	getGenre = () => {
+		this.swapiServices.getGenre()
+		.then((result) => {
+			this.setState(() => {
+				return {
+					genre: result.genres
+				}
+			})
+		})
+	}
+
+	rateChange = (id, value) => {
+		const res = this.swapiServices.postData(id, value)
+		this.setState(({movies, rateMovies}) => {
+			const movie = movies.find(elem => elem.id === id);
+			const movieValue = {...movie, value};
+			const newData = rateMovies.filter(elem => elem.id !== id);
+			return {
+				rateMovies: [...newData, movieValue],
+			}
+		})
+		
+	}
 
 	debounce = (fn, debounceTime) => {
 	    let value;
@@ -53,10 +90,10 @@ export default class App extends Component {
 	};
 
 	onSearch = (event) => {
-		console.log(event.target.value.toLowerCase().trim())
 		this.setState(() => {
 			return {
 				searchValue: event.target.value.toLowerCase().trim(),
+				current: 1,
 			}
 		})
 	};
@@ -90,6 +127,11 @@ export default class App extends Component {
 		return moviesFilter;	
 	};
 
+	guestSession() {
+		const res = this.swapiServices.guestSession()
+		.then(this.onMovieLoaded)
+	}
+
 	getResult(query, page) {
 		const res = this.swapiServices.getDescription(query, page)
 		.then(this.onMovieLoaded)
@@ -97,9 +139,12 @@ export default class App extends Component {
 	};
 
 	render() {
-		const {movies, loading, error, searchValue, current, pages} = this.state;
+		const {movies, loading, error, searchValue, current, pages, show, rateMovies, genre} = this.state;
 
 		const hasData = !(error || loading);
+
+		const searchMessage = !searchValue.trim() && show !== 'rated' ? 
+		<div className="main__searchMessage">Пожалуйста, введите название фильма в поисковую строку.</div> : null
 
 		const errorMessage = error ? 
 		<Alert 
@@ -116,19 +161,25 @@ export default class App extends Component {
 		
 		const content = hasData ? 
 		<Main debounce={this.debounce} 
+		show={show} 
+		rateMovies={rateMovies} 
 		onSearch={this.onSearch} 
 		movies={movies}
 		current={current} 
 		onChange={this.onChange}
-		pages={pages} />
+		pages={pages}
+		rateChange={this.rateChange}
+		searchMessage={searchMessage}
+		showEdit={this.showEdit} />
 		: null;
 
 		return (
 			<div className="main">
-				
-				{spiner}
-				{content}
-				{errorMessage}
+				<Provider value={genre}>
+					{spiner}
+					{content}
+					{errorMessage}
+				</Provider>
 			</div>
 		)
 	}

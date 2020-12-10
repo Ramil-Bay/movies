@@ -5,12 +5,13 @@ import Movie from '../movie';
 
 import './movie-list.css';
 
-const MovieList = ({movies}) => {
+const MovieList = ({movies, rateChange, showEdit}) => {
 
 	const cards = movies.map((elem) => {
 		return(
 			<li className="card" key={elem.id}>
-				<Movie {...elem}  />	
+				<Movie {...elem}
+				rateChange={(id, value) => rateChange(id, value)} />	
 			</li>
 		)
 	})

@@ -1,3 +1,10 @@
+@font-face {
+  	font-family: 'Inter';
+	font-style: normal;
+	font-weight: normal;
+	src: url("../../fonts/static/Inter-Regular-slnt=0.ttf") format("truetype"); 
+}
+
 .main__spin {
 	position: absolute;
 	top: 47%;
@@ -6,4 +13,35 @@
 
 .main .main__pagination {
 	text-align: center;
+}
+
+.main__switch {
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 15px;
+}
+
+.main__button {
+	background-color: inherit;
+	border: none;
+	size: 14px;
+	line-height: 22px;
+	font-family: Inter;
+	box-sizing: border-box;
+	width: 60px;
+	cursor: pointer;
+}
+
+.main__button:focus {
+	outline: none;
+}
+
+.main__button.active {
+	color: #1890FF;
+	border-bottom: 2px solid #1890FF;
+}
+
+.main__searchMessage {
+	margin-left: 10px;
+	font-family: Inter;
 }
